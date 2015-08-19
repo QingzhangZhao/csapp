@@ -10,6 +10,16 @@ public class News {
     private String link;
     private String des;
     private String title;
+    private String content;
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getContent() {
+        return content;
+    }
 
     public String getTitle() {
         return title;

@@ -46,30 +46,25 @@ public class TestActivity extends Activity {
                 String url ="http://45.62.117.228:8000/lostandfound/";
                  String json2 =getJson.run(url);
                   Log.i("josn get !",json2);
-                Gson gson =new Gson();
-                String str = "[{\"content\":\"content\",\"message\":\"ms\",\"title\":\"title\"},{\"content\":\"content\",\"message\":\"ms1\",\"title\":\"title\"},{\"content\":\"content\",\"message\":\"ms3\",\"title\":\"title\"}]";
-                List<Lostandfound> ps = gson.fromJson(json2, new TypeToken<List<Lostandfound>>(){}.getType());
-                Log.i("pssize",ps.size()+"");
-                Lostandfound p = ps.get(2);
-                Log.i("lostandfound",p.getMessage());
+                List<Lostandfound> lostandfoundlist = ParseJson.fromJsontoLostandfoundList(json2);
+                Log.i("pssize",lostandfoundlist.size()+"");
+                Lostandfound lostandfound = lostandfoundlist.get(2);
+                Log.i("lostandfound",lostandfound.getMessage());
 
 
                 //Post一个lostandfound的例子
-                 Lostandfound lostandfound = new Lostandfound();
-                 lostandfound.setContent("content");
-                 lostandfound.setMessage("ms");
-                 lostandfound.setTitle("title");
-                 Gson gson1 =new Gson();
-                 String result = PostJson.post(url, lostandfound);
+                 Lostandfound lostandfound2 = new Lostandfound();
+                 lostandfound2.setContent("content");
+                 lostandfound2.setMessage("123@123.com");
+                 lostandfound2.setTitle("title");
+                 String result = PostJson.post(url, lostandfound2);
                  Log.i("result",result);
 
                 //获取新闻列表的一个例子
                 GetJson getJson2=new GetJson();
                 String url2 ="http://45.62.117.228:8000/news/";
                 String newlist_json =getJson2.run(url2);
-                Gson gson2 =new Gson();
-                List<News> newsList = gson2.fromJson(newlist_json, new TypeToken<List<News>>() {
-                }.getType());
+                List<News> newsList = ParseJson.fromJsontoNewsList(newlist_json);
                 Log.i("pssize",newsList.size()+"");
                 int i;
                 for (i=0;i<newsList.size();i++){
@@ -78,8 +73,14 @@ public class TestActivity extends Activity {
                 }
 
                 //获取某个指定id新闻的例子
-                 int id = 10;
-                 String url3 = "http://45.62.117.228:8000/news/3";
+                 int  id = 10461;
+                 String url3 = "http://45.62.117.228:8000/new/"+id+"/";
+                GetJson getJson3=new GetJson();
+                String new_json =getJson3.run(url3);
+                News news = ParseJson.fromJsontoNews(new_json);
+                Log.i("news id 10461 ",news.getTitle()+"");
+
+
 
             }catch (java.net.ConnectException e){
                 Log.i("Connect Error","can't connect to the server!");
