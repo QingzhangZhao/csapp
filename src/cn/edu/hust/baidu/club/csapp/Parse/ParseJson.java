@@ -1,7 +1,6 @@
 package cn.edu.hust.baidu.club.csapp.Parse;
 
-import cn.edu.hust.baidu.club.csapp.UsedClasses.Lostandfound;
-import cn.edu.hust.baidu.club.csapp.UsedClasses.News;
+import cn.edu.hust.baidu.club.csapp.UsedClasses.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -52,5 +51,21 @@ public class ParseJson {
         Gson gson = new Gson();
         List<Lostandfound> lostandfoundList = gson.fromJson(json, new TypeToken<List<Lostandfound>>(){}.getType());
         return lostandfoundList;
+    }
+    public static HomePage fromJsontoHomePage(String json){
+        Gson gson = new Gson();
+        HomePage homePage = gson.fromJson(json, HomePage.class);
+        return homePage;
+    }
+    public static UserInfo fromJsontoUserInfo(String json){
+        Gson gson = new Gson();
+        UserInfo userInfo = gson.fromJson(json, UserInfo.class);
+        return userInfo;
+    }
+
+    public static ArticlesDetail fromJsontoArticlesDetail(String json){
+        Gson gson = new Gson();
+        ArticlesDetail articlesDetail = gson.fromJson(json, ArticlesDetail.class);
+        return articlesDetail;
     }
 }
