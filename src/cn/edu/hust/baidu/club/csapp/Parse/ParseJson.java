@@ -57,15 +57,21 @@ public class ParseJson {
         HomePage homePage = gson.fromJson(json, HomePage.class);
         return homePage;
     }
-    public static UserInfo fromJsontoUserInfo(String json){
+    public static UserDetail fromJsontoUserDetail(String json){
         Gson gson = new Gson();
-        UserInfo userInfo = gson.fromJson(json, UserInfo.class);
-        return userInfo;
+        UserDetail userDetail = gson.fromJson(json, UserDetail.class);
+        return userDetail;
     }
 
     public static ArticlesDetail fromJsontoArticlesDetail(String json){
         Gson gson = new Gson();
         ArticlesDetail articlesDetail = gson.fromJson(json, ArticlesDetail.class);
         return articlesDetail;
+    }
+
+    public static ArticleComments fromJsontoArticleComments(String json){
+        Gson gson = new Gson();
+        ArticleComments articleComments = gson.fromJson(json, ArticleComments.class);
+        return articleComments;
     }
 }

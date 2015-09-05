@@ -6,29 +6,49 @@ import java.util.List;
  * Created by zqz on 15-9-5.
  */
 public class ArticleInDetail {
+    private String auth;
+    private  boolean transmited;
+    private  boolean checkcollect;
+    private  String title;
+    private  String transmit;
+    private int Zcount ;
+    private  boolean checkzan;
+    private String audiopath;
+    private String betransmit;
+    private boolean checkauth;
+    private  String ctime;
+    private  int Ccount;
+    private  String article_id;
+    private  List<String> imagespath;
+    private  String auth_id;
+    private  String content;
 
-    private  List<String>  becollected;// [],    //被那些人收藏 每个元素是类似  [id，用户名] 的数组
-    private  List<String>  bezan;// [],          //被那些人点赞
-    private  String  ctime;// "2015-07-13 14:31:14",
-    private  String  audiopath;// null,
-    private  String  content;// "春暖花开栗子，我要那佛都烟消云散",
-    private  List<String> comments;// [],
-    private  String  auth_id;// "01cb74c5-242b-3579-ae87-ee19b60798de",
-    private  String title;// "大圣归",
-    private  String imagespath;// "",
-    private  String article_id;// "7c9f69c1-43ab-3a5f-b315-c639cb841bb3",
-
-
-    public List<String> getBecollected() {
-        return becollected;
+    public boolean isCheckcollect() {
+        return checkcollect;
     }
 
-    public List<String> getBezan() {
-        return bezan;
+    public boolean isCheckauth() {
+        return checkauth;
     }
 
-    public List<String> getComments() {
-        return comments;
+    public boolean isCheckzan() {
+        return checkzan;
+    }
+
+    public boolean isTransmited() {
+        return transmited;
+    }
+
+    public int getCcount() {
+        return Ccount;
+    }
+
+    public int getZcount() {
+        return Zcount;
+    }
+
+    public List<String> getImagespath() {
+        return imagespath;
     }
 
     public String getArticle_id() {
@@ -39,8 +59,16 @@ public class ArticleInDetail {
         return audiopath;
     }
 
+    public String getAuth() {
+        return auth;
+    }
+
     public String getAuth_id() {
         return auth_id;
+    }
+
+    public String getBetransmit() {
+        return betransmit;
     }
 
     public String getContent() {
@@ -51,12 +79,11 @@ public class ArticleInDetail {
         return ctime;
     }
 
-    public String getImagespath() {
-        return imagespath;
-    }
-
     public String getTitle() {
         return title;
     }
 
+    public String getTransmit() {
+        return transmit;
+    }
 }

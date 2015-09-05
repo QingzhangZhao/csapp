@@ -108,11 +108,15 @@ public class TestActivity extends Activity {
 
                 //查看某个用户详细资料 需要该用户的uid
                 String result6 = GetJson.getAUserInfo(homePage.getUserid(), cookie);
-                Log.i("用户详细资料",result6);
-               // UserInfo userInfo = ParseJson.fromJsontoUserInfo(result6);
-                //UserDetail userDetail= userInfo.getUserdetail();
-                //Log.i("该用户id",userDetail.getId()+"");
-
+                Log.i("用户详细资料", result6);
+                UserDetail userDetail = ParseJson.fromJsontoUserDetail(result6);
+                Log.i("该用户id",userDetail.getUserdetail().get(0)+"");
+                Log.i("该用户用户名",userDetail.getUserdetail().get(1)+"");
+                Log.i("该用户发表的文章列表",userDetail.getArticles()+"");
+                Log.i("该用户赞列表",userDetail.getZan()+"");
+                Log.i("该用户收藏列表",userDetail.getCollections()+"");
+                Log.i("该用户关注的人",userDetail.getFollowing()+"");
+                Log.i("关注该用户的人",userDetail.getFollower()+"");
                 //关注某个人需要该用户的uid uid可以从查看用户的详细资料里获得
                 String result7 = PostJson.postFollower(homePage.getUserid(), cookie);
                 Log.i("关注",result7);
@@ -124,35 +128,52 @@ public class TestActivity extends Activity {
                 //文章详细信息
                 String response = GetJson.getDetailArticles(articleList.get(1).getArticle_id(), cookie);
                 Log.i("文章详细信息",response);
-                //ArticlesDetail articlesDetail = ParseJson.fromJsontoArticlesDetail(response);
-               // Log.i("文章的标题",articlesDetail.getArticle().getTitle());
-                //Log.i("文章的内容",articlesDetail.getArticle().getContent());
+                ArticlesDetail articlesDetail = ParseJson.fromJsontoArticlesDetail(response);
+               Log.i("文章的标题", articlesDetail.getArticle().getTitle());
+                Log.i("文章的内容", articlesDetail.getArticle().getContent());
 
                 //发表文章 发表文章 有且只有 title 和 content
                 Article article = new Article();
                 article.setTitle("title_test");
                 article.setContent("content_test");
                 String result4 = PostJson.postArticle(article,cookie);
-                Log.i("文章发表状态",result4);
+                Log.i("文章发表状态", result4);
 
                 //删除某个文章
                 String result9= Delete.deleteArticle(articleList.get(1).getArticle_id(), cookie);
-                Log.i("删除状态",result9);
+                Log.i("删除文章状态",result9);
                 //赞某个文章
-
-
+                String result10 = PostJson.postZanorCollect(2, "7e22ac6d-ff9a-36c3-b4f8-8b6ca00d01ee", cookie);
+                Log.i("赞文章状态", result10);
                 //删除某个赞
-
-                //评论某个文章
-
-                //删除评论
+                String result12= Delete.deleteZanorCollect(2, "9907a806-40f3-3029-ba86-46728d56e137", cookie);
+                Log.i("删除赞状态",result12);
 
 
                 //收藏某个文章
+                String result11 = PostJson.postZanorCollect(1, "7e22ac6d-ff9a-36c3-b4f8-8b6ca00d01ee", cookie);
+                Log.i("收藏状态", result11);
 
                 //取消收藏
+                String result13= Delete.deleteZanorCollect(1, "9907a806-40f3-3029-ba86-46728d56e137", cookie);
+                Log.i("取消收藏状态",result13);
+                //查看某个文章的评论
 
-                //
+                String result16 = GetJson.getArticleComment("7e22ac6d-ff9a-36c3-b4f8-8b6ca00d01ee", cookie);
+                Log.i("文章评论信息",result16);
+                ArticleComments articleComments = ParseJson.fromJsontoArticleComments(result16);
+                Log.i("文章评论一个id", articleComments.getComments().get(1).getId());
+
+                //评论某个文章
+                String result14 = PostJson.postComment("test2333","7e22ac6d-ff9a-36c3-b4f8-8b6ca00d01ee",cookie);
+                Log.i("评论状态",result14);
+
+                //删除评论
+                String result15 = Delete.deleteComment(articleComments.getComments().get(1).getId(),cookie);
+                Log.i("删除评论状态",result15);
+
+
+
 
 
 
